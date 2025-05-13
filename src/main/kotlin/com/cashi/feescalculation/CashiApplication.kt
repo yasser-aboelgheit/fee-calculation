@@ -9,5 +9,5 @@ import org.springframework.boot.runApplication
 class CashiApplication
 
 fun main(args: Array<String>) {
-	runApplication<CashiApplication>(*args)
+    runApplication<CashiApplication>(*args)
 }

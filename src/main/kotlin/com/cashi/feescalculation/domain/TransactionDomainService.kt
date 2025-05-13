@@ -3,12 +3,13 @@ package com.cashi.feescalculation.domain
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
+
 @Service
 class TransactionDomainService {
     fun process(tx: Transaction): Transaction {
         validateTransaction(tx)
         updateTransactionState(tx, TransactionStatus.SETTLED_PENDING_FEE)
-        tx.fee =  calculateFee(tx)
+        tx.fee = calculateFee(tx)
         tx.rate = getRateForType(tx.type)
         return tx
     }
@@ -34,4 +35,6 @@ class TransactionDomainService {
     private fun updateTransactionState(tx: Transaction, status: TransactionStatus) {
         tx.state = status.toString()
     }
+
+
 }

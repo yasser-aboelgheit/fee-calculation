@@ -5,10 +5,9 @@ import dev.restate.client.Client
 import dev.restate.sdk.testing.BindService
 import dev.restate.sdk.testing.RestateClient
 import dev.restate.sdk.testing.RestateTest
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Timeout
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,15 +21,31 @@ class TransactionProcessTest {
     @Autowired
     @BindService
     lateinit var service: Payment
+    private lateinit var client: PaymentClient.IngressClient
 
+    @BeforeEach
+    fun setup(@RestateClient ingressClient: Client) {
+        client = PaymentClient.fromClient(ingressClient)
+    }
+
+    private fun baseTransaction(
+        type: String,
+        amount: Double = 100.0
+    ): TransactionRequest = TransactionRequest(
+        type = type,
+        amount = amount,
+        asset = "USD",
+        assetType = "CASH",
+        transactionId = "tx123",
+        state = "PENDING",
+        createdAt = "2023-10-01T00:00:00Z"
+    )
     @Test
     @Timeout(10)
-    fun `process Mobile Top Up transaction`(@RestateClient ingressClient: Client) = runTest {
+    fun `process Mobile Top Up transaction`() = runTest {
         // Given
-        val client = PaymentClient.fromClient(ingressClient)
-        val tx = TransactionRequest(
-            type = "Mobile Top Up", amount = 100.0, asset = "USD",
-            assetType = "CASH", transactionId = "tx123", state = "PENDING", createdAt = "2023-10-01T00:00:00Z"
+        val tx = baseTransaction(
+            type = "Mobile Top Up", amount = 100.0
         )
 
         // When
@@ -42,12 +57,10 @@ class TransactionProcessTest {
 
     @Test
     @Timeout(10)
-    fun `process Card Top Up transaction`(@RestateClient ingressClient: Client) = runTest {
-        val client = PaymentClient.fromClient(ingressClient)
+    fun `process Card Top Up transaction`() = runTest {
         // Given
-        val tx = TransactionRequest(
-            type = "Card Top Up", amount = 100.0, asset = "USD",
-            assetType = "CASH", transactionId = "tx123", state = "PENDING", createdAt = "2023-10-01T00:00:00Z"
+        val tx = baseTransaction(
+            type = "Card Top Up", amount = 100.0
         )
 
         // When
