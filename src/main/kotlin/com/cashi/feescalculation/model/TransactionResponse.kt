@@ -1,4 +1,4 @@
-package com.cashi.restatestarter.model
+package com.cashi.feescalculation.model
 import kotlinx.serialization.Serializable
 
 @Serializable

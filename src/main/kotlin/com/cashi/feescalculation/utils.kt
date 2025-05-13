@@ -1,5 +1,5 @@
-import com.cashi.restatestarter.model.Transaction
-import com.cashi.restatestarter.model.TransactionResponse
+import com.cashi.feescalculation.model.Transaction
+import com.cashi.feescalculation.model.TransactionResponse
 
 fun sendNotification(greetingId: String, name: String) {
     if (Math.random() < 0.5) { // 50% chance of failure
@@ -18,18 +18,18 @@ fun sendReminder(greetingId: String) {
 }
 
 
-fun calculateFee(tx: Transaction): TransactionResponse {
+fun calculateFee(tx: Transaction): String {
     val rate = 0.0015
     val fee = tx.amount * rate
     println("INSIDE CALCULATE FEE")
-    return fee
-    return mapOf(
-        "transaction_id" to tx.transactionId,
-        "amount" to tx.amount,
-        "asset" to tx.asset,
-        "type" to tx.type,
-        "fee" to fee,
-        "rate" to rate,
-        "description" to "Standard fee rate of 0.15%"
-    )
+    return "fee"
+//    return mapOf(
+//        "transaction_id" to tx.transactionId,
+//        "amount" to tx.amount,
+//        "asset" to tx.asset,
+//        "type" to tx.type,
+//        "fee" to fee,
+//        "rate" to rate,
+//        "description" to "Standard fee rate of 0.15%"
+//    )
 }

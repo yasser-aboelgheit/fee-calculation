@@ -1,4 +1,4 @@
-package com.cashi.restatestarter.model
+package com.cashi.feescalculation.model
 import kotlinx.serialization.Serializable
 
 
@@ -9,7 +9,7 @@ data class Transaction(
     val asset: String,
     val assetType: String,
     val type: String,
-    val state: String,
+    var state: String,
     val createdAt: String,
 ) {
     companion object{

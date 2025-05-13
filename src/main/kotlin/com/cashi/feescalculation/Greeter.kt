@@ -1,6 +1,6 @@
-package com.cashi.restatestarter
+package com.cashi.feescalculation
 
-import com.cashi.restatestarter.model.Transaction
+import com.cashi.feescalculation.model.Transaction
 import dev.restate.sdk.kotlin.*
 import dev.restate.sdk.annotation.Handler
 import dev.restate.sdk.springboot.RestateService
@@ -9,8 +9,8 @@ import sendNotification
 import sendReminder
 import kotlin.time.Duration.Companion.seconds
 import calculateFee
-import com.cashi.restatestarter.model.TransactionRequest
-import com.cashi.restatestarter.model.TransactionResponse
+import com.cashi.feescalculation.model.TransactionRequest
+import com.cashi.feescalculation.model.TransactionResponse
 
 @RestateService
 class Greeter {
@@ -31,15 +31,15 @@ class Greeter {
   }
 
   @Handler
-  suspend fun calculateFee(ctx: Context, transactionRequest: TransactionRequest): TransactionResponse {
+  suspend fun calculateFee(ctx: Context, request: TransactionRequest): String {
 
-    val transaction = ctx.runBlock { calculateFee(Transaction.fromTransactionRequest(transactionRequest)) }
-    return transaction
+//    val transaction = ctx.runBlock { calculateFee(Transaction.fromTransactionRequest(transactionRequest)) }
+
 //    // 1. Simple mapping (companion)
-//    val transaction = request.toDomain()
+    val transaction = request.toTransactionDomain()
 //
 //    // 2. Business logic (pure)
-//    val fee = processor.process(transaction)
+    val fee = processor.process(transaction)
 //
 //    // 3. Durable operation
 //    ctx.run { saveToDatabase(transaction) }
@@ -51,5 +51,6 @@ class Greeter {
 //  private suspend fun saveToDatabase(tx: Transaction) {
 //    // Durably save transaction
 //  }
+    return "transaction"
   }
 }

@@ -1,7 +1,9 @@
-package com.cashi.restatestarter.model
+package com.cashi.feescalculation.model
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class TransactionRequest(
     @SerialName("transaction_id")
     val transactionId: String,
@@ -13,4 +15,14 @@ data class TransactionRequest(
     val state: String,
     @SerialName("created_at")
     val createdAt: String,
-)
+) {
+    fun toTransactionDomain(): Transaction = Transaction(
+        transactionId = transactionId,
+        amount = amount,
+        asset = asset,
+        assetType = assetType,
+        type = type,
+        state = state,
+        createdAt = createdAt
+    )
+}
