@@ -1,4 +1,4 @@
-import com.cashi.feescalculation.model.Transaction
+import com.cashi.feescalculation.domain.Transaction
 import com.cashi.feescalculation.model.TransactionResponse
 
 fun sendNotification(greetingId: String, name: String) {

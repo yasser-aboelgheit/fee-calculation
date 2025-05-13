@@ -1,6 +1,6 @@
 package com.cashi.feescalculation
 
-import com.cashi.feescalculation.model.Transaction
+import com.cashi.feescalculation.domain.Transaction
 import dev.restate.sdk.kotlin.*
 import dev.restate.sdk.annotation.Handler
 import dev.restate.sdk.springboot.RestateService

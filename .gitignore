@@ -4,6 +4,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+restate-data/
+restate-data-*.json
 
 ### STS ###
 .apt_generated

@@ -1,5 +1,6 @@
 package com.cashi.feescalculation.model
 
+import com.cashi.feescalculation.domain.Transaction
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
