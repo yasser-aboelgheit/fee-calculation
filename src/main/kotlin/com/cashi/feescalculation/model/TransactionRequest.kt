@@ -3,6 +3,7 @@ package com.cashi.feescalculation.model
 import com.cashi.feescalculation.domain.Transaction
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 
 @Serializable
 data class TransactionRequest(
@@ -19,7 +20,7 @@ data class TransactionRequest(
 ) {
     fun toTransactionDomain(): Transaction = Transaction(
         transactionId = transactionId,
-        amount = amount,
+        amount = BigDecimal(amount.toString()),
         asset = asset,
         assetType = assetType,
         type = type,
