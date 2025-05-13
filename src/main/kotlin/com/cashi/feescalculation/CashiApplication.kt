@@ -1,4 +1,4 @@
-package com.example.restatestarter
+package com.cashi.feescalculation
 
 import dev.restate.sdk.springboot.EnableRestate
 import org.springframework.boot.autoconfigure.SpringBootApplication
